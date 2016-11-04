@@ -15,3 +15,10 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Arquivos de configuração
+config/database.yml
+config/config.yml
+
+# pasta de uploads
+public/uploads/*
