@@ -1,0 +1,50 @@
+default: &default
+  author-parser: "genet_parser@gazetaesportiva.com"
+
+development:
+  url-api: "http://localhost:3000"
+  <<: *default
+
+staging:
+  url-api: "http://hml-apifutebol.gazetaesportiva.net"
+  <<: *default
+
+production:
+  url-api: "http://apifutebol.gazetaesportiva.com"
+  <<: *default
+
+test:
+  url-api: "http://localhost:3000"
+  <<: *default
+
+
+# Opções de configuração
+# use_s3: true ou false
+# access_key_id: AAAAAAAAAAAAAAAAAAAA  # Se true obrigatório
+# secret_access_key: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA # Se true obrigatório
+# bucket: futebolgazetaesportiva # Se true obrigatório
+# region: us-west-2 # Se true obrigatório
+# endpoint: https://s3-us-west-2.amazonaws.com # Se true obrigatório
+# Para a region us-east-1 o endpoint é https://s3.amazonaws.com
+
+development:
+  use_s3: false
+
+test:
+  use_s3: false
+
+staging:
+  use_s3: true
+  access_key_id: AKIAaaaVJ2ETBRXHDE7A
+  secret_access_key: aaaiC9+RMjxn5pul/5kXBaz450hyNEFOeS581pi2
+  bucket: meu-bucket
+  region: us-east-1
+  endpoint: https://s3.amazonaws.com
+
+production:
+  use_s3: true
+  access_key_id: AKIAaaaVJ2ETBRXHDE7A
+  secret_access_key: aaaiC9+RMjxn5pul/5kXBaz450hyNEFOeS581pi2
+  bucket: meu-bucket
+  region: us-east-1
+  endpoint: https://s3.amazonaws.com
