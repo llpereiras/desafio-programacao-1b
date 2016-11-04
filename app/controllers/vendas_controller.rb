@@ -1,6 +1,24 @@
 class VendasController < ApplicationController
   before_action :set_venda, only: [:show, :edit, :update, :destroy]
 
+  def upload
+    message = nil
+    file = 'public/uploads/dados.txt'
+    thread = Thread.new {
+      begin
+        ::Importacao::Interprete.processar_arquivo(file)
+      rescue Exception => e
+        message = "#{DateTime.now.to_s} - EXCEPTION - #{e.message} - #{e.backtrace.each{|l| puts l }} \n\n"
+      ensure
+        File.open("#{Rails.root}/log/importacao.log", "a+") { |f| f << message } if message
+        Thread::exit()
+      end
+    }
+    respond_to do |format|
+      format.html { redirect_to "/", notice: 'Upload efetuado com successo.' }
+    end
+  end
+
   # GET /vendas
   # GET /vendas.json
   def index
