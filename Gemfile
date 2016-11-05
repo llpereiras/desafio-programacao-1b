@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
+gem 'carrierwave'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
 

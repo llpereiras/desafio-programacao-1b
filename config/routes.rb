@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :uploads
   get "vendas/upload" => "vendas#upload"
 
   resources :produtos
