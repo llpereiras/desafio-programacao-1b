@@ -1,14 +1,15 @@
 module Importacao
   class Interprete
 
-    def self.processar_arquivo(file)
+    def self.processar_arquivo(upload)
       begin
+        file = upload.arquivo.path
         raise "Arquivo não informado" unless File.exist?(file.to_s)
         File.open(file, "r").each_with_index do |line, index|
           next if index === 0
           data = line.split(/\t/)
           data.map! { |d|  d.gsub(/\n/, "") }
-          Venda.criar(data)
+          Venda.criar(upload, data)
         end
         return {message: "Arquivo processado com sucesso", status: 200}
       rescue Exception => e
