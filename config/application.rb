@@ -32,5 +32,7 @@ module DesafioProgramacao1b
 
     config.autoload_paths += %W(#{config.root}/importacao/extensions)
 
+    config.action_view.logger = nil
+
   end
 end
