@@ -10,6 +10,7 @@ class UploadsController < ApplicationController
   # GET /uploads/1
   # GET /uploads/1.json
   def show
+    @total_importacao = @upload.vendas.count
   end
 
   # GET /uploads/new

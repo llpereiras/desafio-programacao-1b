@@ -4,6 +4,6 @@ class VendasController < ApplicationController
   # GET /vendas
   # GET /vendas.json
   def index
-    @vendas = Venda.eager_load(:comprador, :fornecedor, :produto)
+    @vendas = Venda.eager_load(:comprador, :fornecedor, :produto).where(upload: params[:upload_id])
   end
 end

@@ -10,4 +10,19 @@
   <dd><%= @upload.status.humanize %></dd>
 </dl>
 
+<hr>
+<dl class="dl-horizontal">
+  <dt><strong>Total de importacao:</strong></dt>
+   <dd><%= @total_importacao %> </dd>
+   <dd>
+     <a href="/vendas/<%= @upload.id %>" class="btn btn-success ">Visualizar Registros importados</a>
+   </dd>
+</dl>
+
+<hr>
+
+
+<br>
+<br>
+
 <%= link_to t('.back', :default => t("helpers.links.back")), uploads_path, :class => 'btn btn-default'  %>

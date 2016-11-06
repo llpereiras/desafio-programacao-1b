@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161105011702) do
+ActiveRecord::Schema.define(version: 20161106164510) do
 
   create_table "compradores", force: :cascade do |t|
     t.string   "nome",       limit: 255
@@ -55,14 +55,17 @@ ActiveRecord::Schema.define(version: 20161105011702) do
     t.integer  "produto_id",    limit: 4
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.integer  "upload_id",     limit: 4
   end
 
   add_index "vendas", ["comprador_id"], name: "index_vendas_on_comprador_id", using: :btree
   add_index "vendas", ["fornecedor_id"], name: "index_vendas_on_fornecedor_id", using: :btree
   add_index "vendas", ["produto_id"], name: "index_vendas_on_produto_id", using: :btree
+  add_index "vendas", ["upload_id"], name: "index_vendas_on_upload_id", using: :btree
 
   add_foreign_key "enderecos", "compradores"
   add_foreign_key "vendas", "compradores"
   add_foreign_key "vendas", "fornecedores"
   add_foreign_key "vendas", "produtos"
+  add_foreign_key "vendas", "uploads"
 end
