@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :uploads, only: [:index, :show, :new]
-  get "upload/reprocesssar" => "upload#reprocesssar"
+  resources :uploads, except: [:delete, :update]
+  get "uploads/reprocessar/:id" => "uploads#reprocessar"
 
   resources :produtos
   resources :vendas
