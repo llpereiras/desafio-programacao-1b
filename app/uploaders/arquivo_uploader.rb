@@ -50,9 +50,7 @@ class ArquivoUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    if original_filename
-      "#{model.id}.txt"
-    end
+    "importacao.txt" if original_filename.present?
   end
 
 end
