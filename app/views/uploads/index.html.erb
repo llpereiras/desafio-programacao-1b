@@ -21,7 +21,12 @@
         <td><%=l upload.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
-                      upload_path(upload), :class => 'btn btn-default btn-xs' %>
+          upload_path(upload), :class => 'btn btn-default btn-xs' %>
+          <% if upload.status == 'erro' %>
+            <%= link_to t('.reprocesssar', :default => 'Reprocessar arquivo'),
+            'uploads/reprocessar/' + upload.id.to_s, :class => 'btn btn-warning btn-xs' %>
+          <% end %>
+
         </td>
       </tr>
     <% end %>
