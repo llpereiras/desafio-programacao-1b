@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Upload -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Arquivo:</strong>
-  <%= @upload.arquivo %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:arquivo) %>:</strong></dt>
+  <dd><%= @upload.arquivo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @upload.status.humanize %></dd>
+</dl>
 
-<p>
-  <strong>Status:</strong>
-  <%= @upload.status %>
-</p>
-
-<%= link_to 'Edit', edit_upload_path(@upload) %> |
-<%= link_to 'Back', uploads_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              uploads_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_upload_path(@upload), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              upload_path(@upload),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
