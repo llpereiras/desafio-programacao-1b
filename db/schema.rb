@@ -11,46 +11,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104203146) do
+ActiveRecord::Schema.define(version: 20161105011702) do
 
   create_table "compradores", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "enderecos", force: :cascade do |t|
-    t.integer  "cliente_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "logradouro",   limit: 255
+    t.integer  "comprador_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "enderecos", ["cliente_id"], name: "index_enderecos_on_cliente_id"
+  add_index "enderecos", ["comprador_id"], name: "index_enderecos_on_comprador_id", using: :btree
 
   create_table "fornecedores", force: :cascade do |t|
-    t.string   "nome"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "nome",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "produtos", force: :cascade do |t|
-    t.string   "descricao"
-    t.decimal  "preco",      precision: 10, scale: 2
-    t.integer  "quantidade"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "descricao",  limit: 255
+    t.decimal  "preco",                  precision: 10, scale: 2
+    t.integer  "quantidade", limit: 4
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+  end
+
+  create_table "uploads", force: :cascade do |t|
+    t.string   "arquivo",    limit: 255
+    t.integer  "status",     limit: 4,   default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "vendas", force: :cascade do |t|
-    t.integer  "cliente_id"
-    t.integer  "fornecedor_id"
-    t.integer  "produto_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.integer  "comprador_id",  limit: 4
+    t.integer  "fornecedor_id", limit: 4
+    t.integer  "produto_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "vendas", ["cliente_id"], name: "index_vendas_on_cliente_id"
-  add_index "vendas", ["fornecedor_id"], name: "index_vendas_on_fornecedor_id"
-  add_index "vendas", ["produto_id"], name: "index_vendas_on_produto_id"
+  add_index "vendas", ["comprador_id"], name: "index_vendas_on_comprador_id", using: :btree
+  add_index "vendas", ["fornecedor_id"], name: "index_vendas_on_fornecedor_id", using: :btree
+  add_index "vendas", ["produto_id"], name: "index_vendas_on_produto_id", using: :btree
 
+  add_foreign_key "enderecos", "compradores"
+  add_foreign_key "vendas", "compradores"
+  add_foreign_key "vendas", "fornecedores"
+  add_foreign_key "vendas", "produtos"
 end
