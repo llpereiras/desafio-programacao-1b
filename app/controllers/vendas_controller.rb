@@ -4,6 +4,6 @@ class VendasController < ApplicationController
   # GET /vendas
   # GET /vendas.json
   def index
-    @vendas = Venda.all
+    @vendas = Venda.eager_load(:comprador, :fornecedor, :produto)
   end
 end
