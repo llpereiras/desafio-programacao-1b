@@ -51,8 +51,7 @@ class ArquivoUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     if original_filename
-      time = Time.new()
-      time = "#{time.year}_#{time.month}_#{time.day}_#{time.hour}_#{time.min}_#{time.sec}.txt"
+      "#{model.id}.txt"
     end
   end
 
