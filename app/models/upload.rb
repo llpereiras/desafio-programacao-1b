@@ -1,13 +1,21 @@
+require 'interprete'
 class Upload < ActiveRecord::Base
 
-  enum tipo: [:nao_processado, :erro, :sucesso]
+  enum status: [:nao_processado, :erro, :sucesso]
 
   mount_uploader :arquivo, ArquivoUploader
 
-  after_save :processar_arquivo
+  after_save -> { processar_arquivo(self) }
 
-  def processar_arquivo
-    return ::Importacao::Interprete.processar_arquivo(self.arquivo.path)
+  def processar_arquivo(upload)
+    retorno =  ::Importacao::Interprete.processar_arquivo(upload.arquivo.path)
+    if retorno[:status] == 200
+      status = 2
+    end
+    if retorno[:status] == 500
+      status = 1
+    end
+    upload.update_columns(status: status)
   end
 
 end
