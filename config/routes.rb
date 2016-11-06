@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :uploads
-  get "vendas/upload" => "vendas#upload"
+  resources :uploads, only: [:index]
+  get "upload/reprocesssar" => "upload#reprocesssar"
 
   resources :produtos
   resources :vendas
