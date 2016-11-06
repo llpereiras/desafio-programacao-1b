@@ -1,6 +1,8 @@
 require 'interprete'
 class Upload < ActiveRecord::Base
 
+  has_many :vendas
+
   enum status: [:nao_processado, :erro, :sucesso]
 
   mount_uploader :arquivo, ArquivoUploader
@@ -8,7 +10,7 @@ class Upload < ActiveRecord::Base
   after_save -> { processar_arquivo(self) }
 
   def processar_arquivo(upload)
-    retorno =  ::Importacao::Interprete.processar_arquivo(upload.arquivo.path)
+    retorno =  ::Importacao::Interprete.processar_arquivo(upload)
     if retorno[:status] == 200
       status = 2
     end
