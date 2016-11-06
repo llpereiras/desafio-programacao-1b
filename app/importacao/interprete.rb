@@ -7,11 +7,12 @@ module Importacao
         File.open(file, "r").each_with_index do |line, index|
           next if index === 0
           data = line.split(/\t/)
+          data.map! { |d|  d.gsub(/\n/, "") }
           Venda.criar(data)
         end
         return {message: "Arquivo processado com sucesso", status: 200}
       rescue Exception => e
-        return {message: "Houve um erro ao processar o arquivo: #{e.message}", status: 500}
+        return {message: "Houve um erro ao processar o arquivo: #{e.message} #{e.backtrace.each{|m| puts "#{m}\n\n" }}", status: 500}
       end
     end
 
