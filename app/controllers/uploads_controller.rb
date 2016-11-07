@@ -29,7 +29,7 @@ class UploadsController < ApplicationController
     @upload.status = Upload.statuses['nao_processado']
     respond_to do |format|
       if @upload.save
-        format.html { redirect_to @upload, notice: 'Upload was successfully created.' }
+        format.html { redirect_to @upload, notice: 'Upload foi criado com sucesso.' }
         format.json { render :show, status: :created, location: @upload }
       else
         format.html { render :new }
@@ -41,7 +41,7 @@ class UploadsController < ApplicationController
   def reprocessar
     respond_to do |format|
       if @upload.processar_arquivo(@upload)
-        format.html { redirect_to upload_path, notice: 'Upload was successfully updated.' }
+        format.html { redirect_to upload_path, notice: 'Upload foi atualizado com sucesso.' }
         format.json { render :show, status: :ok, location: @upload }
       else
         format.html { render :edit }
