@@ -7,7 +7,7 @@ module Importacao
         raise "Arquivo não informado" unless File.exist?(file.to_s)
         File.open(file, "r").each_with_index do |line, index|
           next if index == 0
-          Venda.criar(upload, preparar_dados(data))
+          Venda.criar(upload, preparar_dados(line))
         end
         return {message: "Arquivo processado com sucesso", status: 200}
       rescue Exception => e
@@ -15,16 +15,16 @@ module Importacao
       end
     end
 
-    def self.preparar_dados(data)
-      data = dividirTab(data)
+    def self.preparar_dados(line)
+      data = dividirTab(line)
       limpar(data)
     end
 
-    def self.dividirTab(data)
+    def self.dividirTab(line)
       line.split(/\t/)
     end
 
-    def limpar(data)
+    def self.limpar(data)
       data.map! { |d|  d.gsub(/\n/, "") }
     end
 
