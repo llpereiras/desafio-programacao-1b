@@ -30,7 +30,7 @@ module DesafioProgramacao1b
     config.i18n.default_locale = :"ptBR"
     config.i18n.fallbacks = false
 
-    config.autoload_paths += %W(#{config.root}/importacao/extensions)
+    config.autoload_paths += Dir["#{config.root}/app/importacao/"]
 
     config.action_view.logger = nil
 
