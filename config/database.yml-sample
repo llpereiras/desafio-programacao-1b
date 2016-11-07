@@ -5,14 +5,14 @@ default: &default
 development:
   <<: *default
   host: localhost
-  database: desafio
+  database: desafio_dev
   username: root
   password: root
 
 test:
   <<: *default
   host: localhost
-  database: desafio
+  database: desafio_test
   username: root
   password: root
 
