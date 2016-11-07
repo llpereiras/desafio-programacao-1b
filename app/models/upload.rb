@@ -9,6 +9,8 @@ class Upload < ActiveRecord::Base
 
   after_save -> { processar_arquivo(self) }
 
+  validates :arquivo, presence: true
+
   def processar_arquivo(upload)
     retorno =  ::Importacao::Interprete.processar_arquivo(upload)
     if retorno[:status] == 200
