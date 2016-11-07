@@ -15,24 +15,8 @@ RSpec.describe UploadsController, type: :routing do
       expect(:get => "/uploads/1").to route_to("uploads#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      expect(:get => "/uploads/1/edit").to route_to("uploads#edit", :id => "1")
-    end
-
     it "routes to #create" do
       expect(:post => "/uploads").to route_to("uploads#create")
-    end
-
-    it "routes to #update via PUT" do
-      expect(:put => "/uploads/1").to route_to("uploads#update", :id => "1")
-    end
-
-    it "routes to #update via PATCH" do
-      expect(:patch => "/uploads/1").to route_to("uploads#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/uploads/1").to route_to("uploads#destroy", :id => "1")
     end
 
   end
