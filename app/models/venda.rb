@@ -4,6 +4,11 @@ class Venda < ActiveRecord::Base
   belongs_to :produto
   belongs_to :upload
 
+  validates :comprador, presence: true
+  validates :fornecedor, presence: true
+  validates :produto, presence: true
+  validates :upload, presence: true
+
   def self.criar(upload, data)
     begin
       comprador = Comprador.busca_cadastra(data[0], data[4])
