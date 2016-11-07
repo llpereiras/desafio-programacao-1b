@@ -4,10 +4,11 @@ RSpec.describe Endereco, type: :model do
 
   before(:each) do
     DatabaseCleaner.strategy = :truncation
+    @comprador = FactoryGirl.create(:comprador)
   end
 
-  let(:atributos_validos) { {comprador: FactoryGirl.create(:comprador), logradouro: Faker::Lorem.words(3) }}
-  let(:atributos_nao_validos) { {comprador: ''}}
+  let(:atributos_validos) { {logradouro: Faker::Lorem.words(3), comprador: @comprador }}
+  let(:atributos_nao_validos) { {logradouro: ''}}
 
   describe "Tentar criar endereco" do
     it " com um nome qualquer" do
