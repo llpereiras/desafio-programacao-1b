@@ -24,10 +24,10 @@ SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter
 SimpleCov.start do
   add_filter "/spec/"
   add_filter "/config/"
+  add_filter "/support/"
 end
 
 require 'factory_girl_rails'
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
