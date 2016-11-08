@@ -22,3 +22,6 @@ config/config.yml
 
 # pasta de uploads
 public/uploads/*
+
+# Arquivos do coverage
+coverage

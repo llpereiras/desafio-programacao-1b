@@ -12,7 +12,7 @@ class Upload < ActiveRecord::Base
   validates :arquivo, presence: true
 
   def processar_arquivo(upload)
-    retorno =  ::Importacao::Interprete.processar_arquivo(upload)
+    retorno = ::Importacao::Interprete.processar_arquivo(upload)
     if retorno[:status] == 200
       status = 2
     end
