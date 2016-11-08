@@ -1,0 +1,28 @@
+<%- model_class = Upload -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:arquivo) %>:</strong></dt>
+  <dd><%= @upload.arquivo %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @upload.status.humanize %></dd>
+</dl>
+
+<hr>
+<dl class="dl-horizontal">
+  <dt><strong>Total de importacao:</strong></dt>
+   <dd><%= @total_importacao %> </dd>
+   <dd>
+     <a href="/vendas/<%= @upload.id %>" class="btn btn-success ">Visualizar Registros importados</a>
+   </dd>
+</dl>
+
+<hr>
+
+
+<br>
+<br>
+
+<%= link_to t('.back', :default => t("helpers.links.back")), uploads_path, :class => 'btn btn-default'  %>

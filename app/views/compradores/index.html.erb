@@ -1,0 +1,22 @@
+<%- model_class = Comprador -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:nome) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @compradores.each do |comprador| %>
+      <tr>
+        <td><%= comprador.id %></td>
+        <td><%= comprador.nome %></td>
+        <td><%=l comprador.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

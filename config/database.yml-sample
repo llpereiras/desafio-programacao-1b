@@ -1,0 +1,25 @@
+default: &default
+  adapter: mysql2
+  reconnect: true
+
+development:
+  <<: *default
+  host: localhost
+  database: desafio_dev
+  username: root
+  password: root
+
+test:
+  <<: *default
+  host: localhost
+  database: desafio_test
+  username: root
+  password: root
+
+
+production:
+  <<: *default
+  host: localhost
+  database: desafio
+  username: root
+  password: root

@@ -1,0 +1,31 @@
+<%- model_class = Venda -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Comprador</th>
+      <th>Fornecedor</th>
+      <th>Produto</th>
+      <th>Preco</th>
+      <th>Quantidade</th>
+      <th>Data importacao</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @vendas.each do |venda| %>
+      <tr>
+        <td><%= venda.comprador.nome %></td>
+        <td><%= venda.fornecedor.nome %></td>
+        <td><%= venda.produto.descricao %></td>
+        <td><%= venda.produto.preco %></td>
+        <td><%= venda.produto.quantidade %></td>
+        <td><%=l venda.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Início", '/' %>

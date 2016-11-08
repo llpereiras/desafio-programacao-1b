@@ -1,0 +1,1 @@
+json.array! @compradores, partial: 'compradores/comprador', as: :comprador
